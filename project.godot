@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="shirokuro project"
+run/main_scene="uid://csihuqc5hyue1"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="shirokuro project"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
