@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjttqlbdjuskd"]
+
+[ext_resource type="Script" uid="uid://7658foi8glmg" path="res://scripts/background.gd" id="1_bkp1e"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5a4c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bkp1e"]
+normal = Vector2(1, 0.01)
+distance = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y0upk"]
+normal = Vector2(-1, 0.01)
+
+[node name="BackGround" type="Node2D"]
+script = ExtResource("1_bkp1e")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_o5a4c")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_bkp1e")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("WorldBoundaryShape2D_y0upk")
