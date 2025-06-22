@@ -14,5 +14,6 @@ snowball = ExtResource("2_lbhrr")
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 
 [node name="Snowball_Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="timeout" from="Snowball_Timer" to="." method="_on_snowball_timer_timeout"]
