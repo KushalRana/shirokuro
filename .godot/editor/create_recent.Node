@@ -1,3 +1,5 @@
+Camera2D
+TouchScreenButton
 CollisionShape2D
 StaticBody2D
 Timer

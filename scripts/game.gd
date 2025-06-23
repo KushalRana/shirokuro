@@ -12,6 +12,10 @@ var joystick_on
 var base_pos
 var dir
 
+var camera_y_start
+var camera_y_displaced
+var camera_shift_interval
+
 #Generate snowball
 @export var snowball: PackedScene
 
@@ -19,7 +23,9 @@ func _ready():
 	#srn=DisplayServer.screen_get_size()
 	srn=DisplayServer.window_get_size()
 	#$Player.apply_scale(Vector2(50.0,50.0))
-	$Player.position=Vector2(50.0,srn.y-300)
+	#$Player.position=Vector2(50.0,srn.y-10)
+	$Player.position=Vector2(50.0,-10)
+	
 	force=20.0
 	max_spd=300.0
 	$Player/RigidBody2D.contact_monitor=true
@@ -36,7 +42,16 @@ func _ready():
 	joystick_on=false
 	base_pos = Vector2(0,0)
 	dir=0
-
+	
+	#Start camera abit lower so ground can be seen
+	camera_y_start = srn.y-20.0
+	#camera_y_displaced = 0.0
+	camera_shift_interval = 100
+	#self.position=Vector2(0.0,camera_y_start)
+	$Camera2D.position=Vector2(srn.x/2,-camera_y_start/2)
+	
+	#$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-$JumpButton.shape.radius)
+	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-camera_y_start-$JumpButton.shape.radius)
 
 func _process(delta):
 	#keyboard handle
@@ -44,13 +59,8 @@ func _process(delta):
 		move_right()
 	if Input.is_action_pressed("Move_Left"):
 		move_left()
-	#if Input.is_action_pressed("Jump")&&$Player/RigidBody2D.linear_velocity.y>-0.2&&$Player/RigidBody2D.linear_velocity.y<10.0:
-	var contact = $Player/RigidBody2D.get_colliding_bodies()
-	if Input.is_action_pressed("Jump"):#&&($Player/RigidBody2D.get_contact_count()>1||($Player/RigidBody2D.get_contact_count()==1&&$Player/RigidBody2D.get_colliding_bodies()[0].name!="LeftWall")):
-		#if $Player/RigidBody2D.get_contact_count()>1:
-		#	jump()
-		#if $Player/RigidBody2D.get_contact_count()>0 && $Player/RigidBody2D.get_colliding_bodies()[0].name!="LeftWall":
-		#	jump()
+
+	if Input.is_action_pressed("Jump"):
 		if $Player/RigidBody2D.get_colliding_bodies().size()>0 && $Player/RigidBody2D.get_colliding_bodies()[0].name!="LeftWall" && $Player/RigidBody2D.get_colliding_bodies()[0].name!="RightWall":
 			jump()
 		elif $Player/RigidBody2D.get_colliding_bodies().size()>1:
@@ -67,12 +77,19 @@ func _process(delta):
 	
 	#cap the speed
 	cap_spd()
-
-
+	
+	#Screen movement
+	#if $Player/RigidBody2D.global_position.y < ($Camera2D.offset.y-camera_shift_interval*2):
+	#if $Player/RigidBody2D.position.y < (-camera_shift_interval*2):
+	if $Player/RigidBody2D.position.y < ($Camera2D.offset.y-camera_shift_interval*3   ):
+		#$Camera2D.position=Vector2(srn.x/2,-$Camera2D.position.y-200)
+		$Camera2D.offset=Vector2(0.0,$Camera2D.offset.y-camera_shift_interval/2)
+		$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-camera_y_start-$JumpButton.shape.radius+$Camera2D.offset.y)
+	
 func _on_snowball_timer_timeout() -> void:
 	var dup=snowball.instantiate()
 	#dup.position=Vector2(randf_range(0,srn.x-200),0)
-	dup.position=Vector2(randf_range(0,srn.x),0)
+	dup.position=Vector2(randf_range(0,srn.x),-camera_y_start+$Camera2D.offset.y)
 	add_child(dup)
 	
 #Handling joystick
