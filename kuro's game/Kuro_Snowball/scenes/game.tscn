@@ -27,6 +27,7 @@ snowball = ExtResource("2_lbhrr")
 [node name="BackGround" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(2, 0)
 
 [node name="Snowball_Timer" type="Timer" parent="."]
 wait_time = 0.5
