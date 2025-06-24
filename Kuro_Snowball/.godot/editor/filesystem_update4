@@ -1,1 +1,7 @@
 res://scenes/game.tscn
+<<<<<<< HEAD
+=======
+res://scripts/game.gd
+res://scenes/snow_ball.tscn
+res://scenes/player.tscn
+>>>>>>> b7ef999b481485d1f406b714479622bfff2174f1

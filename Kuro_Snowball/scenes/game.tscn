@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kf7ft8561xts"]
+[gd_scene load_steps=10 format=3 uid="uid://kf7ft8561xts"]
 
 [ext_resource type="Script" uid="uid://cyaay7qt3f4dy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bjttqlbdjuskd" path="res://scenes/background.tscn" id="1_uwrxv"]
@@ -16,6 +16,9 @@ region = Rect2(456, 208, 160, 168)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
 radius = 70.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_iywne"]
+font_color = Color(1, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
@@ -38,4 +41,14 @@ action = "Jump"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Info" type="Label" parent="."]
+top_level = true
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_iywne")
+
+[node name="Update_Timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="Snowball_Timer" to="." method="_on_snowball_timer_timeout"]
+[connection signal="timeout" from="Update_Timer" to="." method="_on_update_timer_timeout"]

@@ -13,8 +13,19 @@ var base_pos
 var dir
 
 var camera_y_start
-var camera_y_displaced
 var camera_shift_interval
+var char_init_offset
+
+#scoring
+var cur_height
+var max_height
+var survival_time
+
+var snowball_base_spd #every 0.5 seconds 1 ball
+var snowball_spd_incr #each increment of difficulty minus 0.01 second
+var diff_incr_interval
+
+var game_over
 
 #Generate snowball
 @export var snowball: PackedScene
@@ -43,15 +54,30 @@ func _ready():
 	base_pos = Vector2(0,0)
 	dir=0
 	
-	#Start camera abit lower so ground can be seen
-	camera_y_start = srn.y-20.0
-	#camera_y_displaced = 0.0
-	camera_shift_interval = 100
-	#self.position=Vector2(0.0,camera_y_start)
-	$Camera2D.position=Vector2(srn.x/2,-camera_y_start/2)
+	cur_height=0.0
+	max_height=0.0
+	survival_time=0.0
 	
-	#$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-$JumpButton.shape.radius)
-	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-camera_y_start-$JumpButton.shape.radius)
+	#Start camera abit lower so ground can be seen
+	camera_y_start = srn.y-20.0 #The top left of camera
+	camera_shift_interval = 20 #smaller = smoother scrolling
+	$Camera2D.position=Vector2(srn.x/2,-camera_y_start/2)
+	char_init_offset=-1 #uninitialized
+	
+	#screen has shifted to slightly below ground so placing button on ground level is sufficient
+	#then move up with each offset
+	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,$Camera2D.offset.y-$JumpButton.shape.radius)
+	$Info.position=Vector2(0.0,-camera_y_start)
+	$Info.text="Game Loading"
+	
+	
+	#Update timer which refresh display info
+	$Update_Timer.start()
+	
+	snowball_base_spd=0.5 #every 0.5 seconds 1 ball
+	snowball_spd_incr=0.01 #each increment of difficulty minus 0.01 second
+	diff_incr_interval=3
+	game_over=false
 
 func _process(delta):
 	#keyboard handle
@@ -79,18 +105,23 @@ func _process(delta):
 	cap_spd()
 	
 	#Screen movement
-	#if $Player/RigidBody2D.global_position.y < ($Camera2D.offset.y-camera_shift_interval*2):
-	#if $Player/RigidBody2D.position.y < (-camera_shift_interval*2):
-	if $Player/RigidBody2D.position.y < ($Camera2D.offset.y-camera_shift_interval*3   ):
-		#$Camera2D.position=Vector2(srn.x/2,-$Camera2D.position.y-200)
-		$Camera2D.offset=Vector2(0.0,$Camera2D.offset.y-camera_shift_interval/2)
-		$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,srn.y-10-camera_y_start-$JumpButton.shape.radius+$Camera2D.offset.y)
+	if ($Player/RigidBody2D.position.y-char_init_offset) < ($Camera2D.offset.y-camera_shift_interval*14):
+		$Camera2D.offset=Vector2(0.0,$Camera2D.offset.y-camera_shift_interval/4)
+		$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,$Camera2D.offset.y-$JumpButton.shape.radius)
+		$Info.position=Vector2(0.0,-camera_y_start+$Camera2D.offset.y)
+		
+	check_gameOver()
+		
 	
 func _on_snowball_timer_timeout() -> void:
 	var dup=snowball.instantiate()
 	#dup.position=Vector2(randf_range(0,srn.x-200),0)
 	dup.position=Vector2(randf_range(0,srn.x),-camera_y_start+$Camera2D.offset.y)
+	##Add speed to prevent detection of gameover
+	dup.find_child("RigidBody2D").linear_velocity=Vector2(0.0,0.01)
 	add_child(dup)
+	
+	dup.add_to_group("new_snowballs")
 	
 #Handling joystick
 func _input(event):
@@ -140,3 +171,48 @@ func cap_spd():
 		$Player/RigidBody2D.linear_velocity=Vector2(-max_spd,$Player/RigidBody2D.linear_velocity.y)
 	if $Player/RigidBody2D.linear_velocity.y<-max_spd:
 		$Player/RigidBody2D.linear_velocity=Vector2($Player/RigidBody2D.linear_velocity.x,-max_spd)
+
+
+func _on_update_timer_timeout() -> void:
+	#Initialize distance
+	if char_init_offset==-1:
+		char_init_offset=$Player/RigidBody2D.position.y
+		
+	if game_over == true:
+		$Info.text+="\nGame Over"
+		$Snowball_Timer.stop()
+		$Update_Timer.stop()
+	
+	else:
+		#Display update
+		cur_height=snapped((char_init_offset-$Player/RigidBody2D.position.y)/10,0.01)
+		max_height=max(max_height,cur_height)
+		survival_time+=$Update_Timer.wait_time
+		
+		$Info.text="Current Height :" + str(cur_height) + " M\n"
+		$Info.text+="Max Height: " + str(max_height) + " M\n"
+		$Info.text+="Survival Time: " + str(snapped(survival_time,1)) + " seconds"
+		
+		#Difficulty up every 10 seconds
+		#but cap at 0.01 sec interval
+		if $Snowball_Timer.wait_time>0.01:
+			var spd=snowball_base_spd-snowball_spd_incr*snapped(survival_time/diff_incr_interval,1)
+			spd=max(0.01,spd) #cannot go below 0.01
+			$Snowball_Timer.wait_time=spd
+			
+func check_gameOver():
+	var camera=$Camera2D.global_position+$Camera2D.offset
+	var srn_top_y=camera.y-srn.y/2 + 50
+	#if covered by snowballs up to depth of 1/3 the screen, assumed stuck
+	var player_buried_y = $Player/RigidBody2D.global_position.y-srn.y/3
+	
+	var snowballs = get_tree().get_nodes_in_group("new_snowballs")
+	for snball in snowballs:
+		if game_over == false && snball.find_child("RigidBody2D").linear_velocity.y < 0.0:
+			if snball.find_child("RigidBody2D").global_position.y < player_buried_y:
+				game_over=true
+			if snball.find_child("RigidBody2D").global_position.y < srn_top_y:
+				game_over=true
+			#snowballs that are stopped or bounced do not need to be checked anymore
+			snball.remove_from_group("new_snowballs")
+		
