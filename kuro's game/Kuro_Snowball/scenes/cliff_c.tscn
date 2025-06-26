@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg23ctrebvhgs"]
+
+[ext_resource type="Texture2D" uid="uid://73araekdjb31" path="res://assets/sprites/cliffs.png" id="1_x2cqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v17f"]
+atlas = ExtResource("1_x2cqx")
+region = Rect2(711.187, 88.9533, 271.046, 242.515)
+
+[node name="Cliff_C" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(56, -116, 79, -102, 99, -56, 123, -32, 135, 65, 136, 115, -126, 115, -136, 92, -128, 30, -84, 10, -65, -10, -6, 20, 17, -60)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = SubResource("AtlasTexture_3v17f")

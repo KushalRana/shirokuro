@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://kf7ft8561xts"]
+[gd_scene load_steps=11 format=3 uid="uid://kf7ft8561xts"]
 
 [ext_resource type="Script" uid="uid://cyaay7qt3f4dy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bjttqlbdjuskd" path="res://scenes/background.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dn3ux3apbju6n" path="res://scenes/snow_ball.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://omj2y7mwt8hv" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://c20atakrhtmy0" path="res://assets/sprites/buttons.png" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://cuomncejh6qye" path="res://scenes/obstacles.tscn" id="6_p57ef"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p57ef"]
 atlas = ExtResource("5_iywne")
@@ -50,6 +51,8 @@ label_settings = SubResource("LabelSettings_iywne")
 
 [node name="Update_Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Obstacles" parent="." instance=ExtResource("6_p57ef")]
 
 [connection signal="timeout" from="Snowball_Timer" to="." method="_on_snowball_timer_timeout"]
 [connection signal="timeout" from="Update_Timer" to="." method="_on_update_timer_timeout"]

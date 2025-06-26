@@ -1,0 +1,10 @@
+res://scenes/game.tscn
+res://scenes/obstacles.tscn
+res://scenes/cliff_a.tscn
+res://scripts/game.gd
+res://scenes/cliff_b.tscn
+res://scenes/cliff_c.tscn
+res://scenes/cliff_d.tscn
+res://scenes/cliff_f.tscn
+res://scripts/obstacles.gd
+res://scenes/cliff_e.tscn

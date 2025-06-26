@@ -26,6 +26,14 @@ var snowball_spd_incr #each increment of difficulty minus 0.01 second
 var diff_incr_interval
 
 var game_over
+var last_player_pos
+var max_ticks_not_moving
+var tick_player_not_moving
+
+
+var last_obstacle_y
+var obstacle_interval
+var rnd
 
 #Generate snowball
 @export var snowball: PackedScene
@@ -78,6 +86,16 @@ func _ready():
 	snowball_spd_incr=0.01 #each increment of difficulty minus 0.01 second
 	diff_incr_interval=3
 	game_over=false
+	
+	last_player_pos=Vector2($Player/RigidBody2D.global_position)
+	max_ticks_not_moving=10 #timer interval 0.5 sec so 5 sec is 10 ticks
+	tick_player_not_moving=0
+	
+	last_obstacle_y=0.0 #to hwlp limit obstacles placed
+	obstacle_interval=srn.y/3
+	rnd=RandomNumberGenerator.new()
+	rnd.randomize()
+	
 
 func _process(delta):
 	#keyboard handle
@@ -104,11 +122,8 @@ func _process(delta):
 	#cap the speed
 	cap_spd()
 	
-	#Screen movement
-	if ($Player/RigidBody2D.position.y-char_init_offset) < ($Camera2D.offset.y-camera_shift_interval*14):
-		$Camera2D.offset=Vector2(0.0,$Camera2D.offset.y-camera_shift_interval/4)
-		$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,$Camera2D.offset.y-$JumpButton.shape.radius)
-		$Info.position=Vector2(0.0,-camera_y_start+$Camera2D.offset.y)
+	#scroll up as player proceeds
+	move_screen()
 		
 	check_gameOver()
 		
@@ -172,6 +187,21 @@ func cap_spd():
 	if $Player/RigidBody2D.linear_velocity.y<-max_spd:
 		$Player/RigidBody2D.linear_velocity=Vector2($Player/RigidBody2D.linear_velocity.x,-max_spd)
 
+func move_screen():
+	#if player position is above mid screen, scroll screen up
+	if ($Player/RigidBody2D.position.y-char_init_offset) < ($Camera2D.offset.y-camera_shift_interval*14):
+		$Camera2D.offset=Vector2(0.0,$Camera2D.offset.y-camera_shift_interval/4)
+		$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius,$Camera2D.offset.y-$JumpButton.shape.radius)
+		$Info.position=Vector2(0.0,-camera_y_start+$Camera2D.offset.y)
+		
+		#if scroll screen up, check if should add an obstacle
+		if($Camera2D.offset.y<(last_obstacle_y-obstacle_interval) && rnd.randi()%2): #decide if should add obstacle
+			last_obstacle_y=$Camera2D.offset.y
+			var flip=rnd.randi()%2
+			var obstacle_x = 0.0
+			if(flip): #decide if should be left or right
+				obstacle_x=srn.x
+			$Obstacles.add_obstacle(rnd.randi()%6+1,Vector2(obstacle_x,-camera_y_start+$Camera2D.offset.y+200),flip)
 
 func _on_update_timer_timeout() -> void:
 	#Initialize distance
@@ -193,12 +223,22 @@ func _on_update_timer_timeout() -> void:
 		$Info.text+="Max Height: " + str(max_height) + " M\n"
 		$Info.text+="Survival Time: " + str(snapped(survival_time,1)) + " seconds"
 		
+		##debugging info
+		$Info.text+="\nActive_Movement: " + str(last_player_pos.distance_to($Player/RigidBody2D.global_position))
+		
 		#Difficulty up every 10 seconds
 		#but cap at 0.01 sec interval
 		if $Snowball_Timer.wait_time>0.01:
 			var spd=snowball_base_spd-snowball_spd_incr*snapped(survival_time/diff_incr_interval,1)
 			spd=max(0.01,spd) #cannot go below 0.01
 			$Snowball_Timer.wait_time=spd
+			
+		#chk if player moving
+		if(last_player_pos.distance_to($Player/RigidBody2D.global_position)<30.0):
+			tick_player_not_moving+=1
+		else:
+			tick_player_not_moving=0
+		last_player_pos = Vector2($Player/RigidBody2D.global_position)
 			
 func check_gameOver():
 	var camera=$Camera2D.global_position+$Camera2D.offset
@@ -209,10 +249,11 @@ func check_gameOver():
 	var snowballs = get_tree().get_nodes_in_group("new_snowballs")
 	for snball in snowballs:
 		if game_over == false && snball.find_child("RigidBody2D").linear_velocity.y < 0.0:
-			if snball.find_child("RigidBody2D").global_position.y < player_buried_y:
+			if snball.find_child("RigidBody2D").global_position.y < player_buried_y && tick_player_not_moving >= max_ticks_not_moving:
 				game_over=true
-			if snball.find_child("RigidBody2D").global_position.y < srn_top_y:
+			if snball.find_child("RigidBody2D").global_position.y < srn_top_y && tick_player_not_moving >= max_ticks_not_moving:
 				game_over=true
 			#snowballs that are stopped or bounced do not need to be checked anymore
-			snball.remove_from_group("new_snowballs")
+			if snball.find_child("RigidBody2D").global_position.y > $Player/RigidBody2D.position.y:
+				snball.remove_from_group("new_snowballs")
 		

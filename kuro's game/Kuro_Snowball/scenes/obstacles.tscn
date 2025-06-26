@@ -1,0 +1,18 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuomncejh6qye"]
+
+[ext_resource type="Script" uid="uid://bma0p5fy4x71w" path="res://scripts/obstacles.gd" id="1_3g423"]
+[ext_resource type="PackedScene" uid="uid://baigsttaypmkb" path="res://scenes/cliff_a.tscn" id="2_0xfci"]
+[ext_resource type="PackedScene" uid="uid://dl5omwieubjb7" path="res://scenes/cliff_b.tscn" id="3_p7p8a"]
+[ext_resource type="PackedScene" uid="uid://dg23ctrebvhgs" path="res://scenes/cliff_c.tscn" id="4_by4sd"]
+[ext_resource type="PackedScene" uid="uid://p756t56st0g4" path="res://scenes/cliff_d.tscn" id="5_ojery"]
+[ext_resource type="PackedScene" uid="uid://8sqcmm04nu6l" path="res://scenes/cliff_e.tscn" id="6_qdx3v"]
+[ext_resource type="PackedScene" uid="uid://cekx172b8yyy5" path="res://scenes/cliff_f.tscn" id="7_s0ksf"]
+
+[node name="Obstacles" type="Node2D"]
+script = ExtResource("1_3g423")
+cliff_a = ExtResource("2_0xfci")
+cliff_b = ExtResource("3_p7p8a")
+cliff_c = ExtResource("4_by4sd")
+cliff_d = ExtResource("5_ojery")
+cliff_e = ExtResource("6_qdx3v")
+cliff_f = ExtResource("7_s0ksf")
