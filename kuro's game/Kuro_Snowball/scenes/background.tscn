@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjttqlbdjuskd"]
+[gd_scene load_steps=10 format=3 uid="uid://bjttqlbdjuskd"]
 
 [ext_resource type="Script" uid="uid://7658foi8glmg" path="res://scripts/background.gd" id="1_bkp1e"]
+[ext_resource type="Texture2D" uid="uid://cvxigc3c4ywmi" path="res://assets/sprites/snow_background_Bottom.jpg" id="2_y0upk"]
+[ext_resource type="Texture2D" uid="uid://b8j8g8exlgy8f" path="res://assets/sprites/snowy_night_sky.jpg" id="3_jougr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5a4c"]
 
@@ -9,6 +11,17 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y0upk"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0upk"]
+atlas = ExtResource("2_y0upk")
+region = Rect2(428.583, 1374.23, 1571.42, 625.767)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jougr"]
+atlas = ExtResource("3_jougr")
+region = Rect2(391.107, 0, 1608.89, 1358.17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbsqf"]
+atlas = ExtResource("3_jougr")
 
 [node name="BackGround" type="Node2D"]
 script = ExtResource("1_bkp1e")
@@ -29,3 +42,12 @@ collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_y0upk")
+
+[node name="Ground_Image" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_y0upk")
+
+[node name="Bottom_Image" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_jougr")
+
+[node name="Bottom_Image_2" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_cbsqf")
