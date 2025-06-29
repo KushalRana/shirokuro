@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 res://scenes/game.tscn
 res://scenes/obstacles.tscn
 res://scenes/cliff_a.tscn
@@ -10,8 +11,11 @@ res://scenes/cliff_f.tscn
 =======
 res://scenes/player.tscn
 res://scripts/player.gd
+=======
+>>>>>>> d4d34db844e425caa820d3c418b5a309f0504ee3
 res://scenes/game.tscn
 res://scenes/obstacles.tscn
 res://scenes/background.tscn
+res://scenes/player.tscn
 res://scripts/game.gd
 >>>>>>> cb883e5a4419476826e89b55f8a2aafe991b7504
