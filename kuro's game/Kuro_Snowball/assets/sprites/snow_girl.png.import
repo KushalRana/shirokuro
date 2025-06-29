@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ejxdxpc05dyq"
-path="res://.godot/imported/201790-OZ7N6G-910.jpg-c98298ad9b58447a7519ad32931c6cbf.ctex"
+uid="uid://dhbv8p4htrv1p"
+path="res://.godot/imported/snow_girl.png-d168ec57f73cd36eb4994fa8aeb5910f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/201790-OZ7N6G-910.jpg"
-dest_files=["res://.godot/imported/201790-OZ7N6G-910.jpg-c98298ad9b58447a7519ad32931c6cbf.ctex"]
+source_file="res://assets/sprites/snow_girl.png"
+dest_files=["res://.godot/imported/snow_girl.png-d168ec57f73cd36eb4994fa8aeb5910f.ctex"]
 
 [params]
 
