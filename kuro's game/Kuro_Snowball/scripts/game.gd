@@ -130,17 +130,10 @@ func _process(delta):
 	
 func _on_snowball_timer_timeout() -> void:
 	var dup=snowball.instantiate()
-<<<<<<< HEAD
-	#dup.position=Vector2(randf_range(0,srn.x-200),0)
-	dup.position=Vector2(randf_range(0,srn.x),-camera_y_start+$Camera2D.offset.y)
-=======
+
 	#Dropping from abit higher is fine
-<<<<<<< HEAD
-	dup.position=Vector2(randf_range(0,srn.x) , $Camera2D.global_position.y + $Camera2D.offset.y - 1.5 * srn.y)
->>>>>>> cb883e5a4419476826e89b55f8a2aafe991b7504
-=======
-	dup.position=Vector2(randf_range(0,srn.x) , $Camera2D.global_position.y + $Camera2D.offset.y - 1.5*srn.y)
->>>>>>> d4d34db844e425caa820d3c418b5a309f0504ee3
+
+
 	##Add speed to prevent detection of gameover
 	dup.find_child("RigidBody2D").linear_velocity=Vector2(0.0,0.01)
 	add_child(dup)
