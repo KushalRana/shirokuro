@@ -1,4 +1,5 @@
+res://scenes/player.tscn
 res://scenes/game.tscn
-res://scripts/game.gd
 res://scenes/background.tscn
-res://scripts/background.gd
+res://scenes/snow_ball.tscn
+res://scripts/player.gd

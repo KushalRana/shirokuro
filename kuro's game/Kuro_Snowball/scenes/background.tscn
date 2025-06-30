@@ -58,4 +58,5 @@ texture = SubResource("AtlasTexture_jougr")
 texture = SubResource("AtlasTexture_cbsqf")
 
 [node name="Base_Image" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = SubResource("AtlasTexture_wisxt")
