@@ -1,1 +1,4 @@
 res://scenes/game.tscn
+res://scripts/game.gd
+res://scenes/background.tscn
+res://scripts/background.gd

@@ -22,6 +22,8 @@ var snowball_base_spd #every 0.5 seconds 1 ball
 var snowball_spd_incr #each increment of difficulty minus 0.01 second
 var diff_incr_interval
 
+var srn_scroll_interval
+
 var game_over
 var overflow_snowball_limit
 
@@ -58,7 +60,8 @@ func _ready():
 	
 	#Position camera	
 	$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
-	#$Camera2D.offset=Vector2(0.0,-srn.y*1/3) #player 2/3 from top of screen
+	$Camera2D.offset=Vector2(0.0,-srn.y/4) #player 2/3 from top of screen
+	srn_scroll_interval = srn.y/8
 	
 	#screen has shifted to slightly below ground so placing button on ground level is sufficient
 	#then move up with each offset
@@ -176,7 +179,13 @@ func cap_spd():
 
 func move_screen():
 	#Move camera with player along the Y axis
-	$Camera2D.position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
+	var offset = $Player/RigidBody2D.global_position.y - $Camera2D.global_position.y 
+	if offset > srn_scroll_interval:
+		$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y - srn_scroll_interval)
+	elif offset < -srn_scroll_interval:
+		$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y + srn_scroll_interval)
+	
+	#$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
 	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius)
 	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2)
 	

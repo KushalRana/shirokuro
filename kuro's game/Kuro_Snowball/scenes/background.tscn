@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjttqlbdjuskd"]
+[gd_scene load_steps=11 format=3 uid="uid://bjttqlbdjuskd"]
 
 [ext_resource type="Script" uid="uid://7658foi8glmg" path="res://scripts/background.gd" id="1_bkp1e"]
 [ext_resource type="Texture2D" uid="uid://cvxigc3c4ywmi" path="res://assets/sprites/snow_background_Bottom.jpg" id="2_y0upk"]
-[ext_resource type="Texture2D" uid="uid://b8j8g8exlgy8f" path="res://assets/sprites/snowy_night_sky.jpg" id="3_jougr"]
+[ext_resource type="Texture2D" uid="uid://bjgkm05ofhnyn" path="res://assets/sprites/mountain_night.jpg" id="4_cbsqf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5a4c"]
 
@@ -17,11 +17,16 @@ atlas = ExtResource("2_y0upk")
 region = Rect2(428.583, 1374.23, 1571.42, 625.767)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jougr"]
-atlas = ExtResource("3_jougr")
-region = Rect2(391.107, 0, 1608.89, 1358.17)
+atlas = ExtResource("4_cbsqf")
+region = Rect2(-23.0494, 63.2687, 4876.92, 421.36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbsqf"]
-atlas = ExtResource("3_jougr")
+atlas = ExtResource("4_cbsqf")
+region = Rect2(-33.9919, -18.6063, 4946.4, 461.472)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wisxt"]
+atlas = ExtResource("4_cbsqf")
+region = Rect2(-91.676, 34.4267, 4955.68, 3284.95)
 
 [node name="BackGround" type="Node2D"]
 script = ExtResource("1_bkp1e")
@@ -51,3 +56,6 @@ texture = SubResource("AtlasTexture_jougr")
 
 [node name="Bottom_Image_2" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_cbsqf")
+
+[node name="Base_Image" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_wisxt")
