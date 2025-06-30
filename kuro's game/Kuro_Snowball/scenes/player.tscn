@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://djih0t4kqejv4" path="res://assets/free-pixel-art-tiny-hero-sprites/3 Dude_Monster/Dude_Monster_Idle_4.png" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
-radius = 35.1351
-height = 97.2973
+radius = 20.0
+height = 54.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_qhqgy")
@@ -98,14 +98,11 @@ script = ExtResource("1_g2els")
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, -28)
-scale = Vector2(0.74, 0.74)
+position = Vector2(-1, 7)
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
-position = Vector2(2, -41)
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.844244
