@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfr7n6b2bv2f4"]
+
+[ext_resource type="Script" uid="uid://5b7s8i2gw2p0" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://pmnjwcsmojhl" path="res://assets/sprites/menu_background.jpg" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://bjgkm05ofhnyn" path="res://assets/sprites/mountain_night.jpg" id="2_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://bks16hkpoemnu" path="res://assets/sprites/Frost_Buttons.png" id="3_con2f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ytvr"]
+atlas = ExtResource("2_mhnvy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjb58"]
+atlas = ExtResource("1_yqeox")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhnvy"]
+atlas = ExtResource("3_con2f")
+region = Rect2(236, 141.205, 177.333, 66.2564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_con2f"]
+atlas = ExtResource("3_con2f")
+region = Rect2(236, 141.205, 177.333, 66.256)
+margin = Rect2(2.5, 2.5, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_con2f"]
+font_size = 25
+font_color = Color(0, 0, 1, 1)
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_vjb58")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_4ytvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vjb58")
+
+[node name="New_Game_Button" type="TouchScreenButton" parent="Sprite2D"]
+texture_normal = SubResource("AtlasTexture_mhnvy")
+texture_pressed = SubResource("AtlasTexture_con2f")
+action = "New_Game"
+
+[node name="Label" type="Label" parent="Sprite2D/New_Game_Button"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "New Game"
+label_settings = SubResource("LabelSettings_con2f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

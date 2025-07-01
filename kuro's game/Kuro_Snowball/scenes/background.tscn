@@ -14,15 +14,15 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0upk"]
 atlas = ExtResource("2_y0upk")
-region = Rect2(428.583, 1374.23, 1571.42, 625.767)
+region = Rect2(428.583, 1374.23, 1571.42, 485.652)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jougr"]
 atlas = ExtResource("4_cbsqf")
-region = Rect2(-23.0494, 63.2687, 4876.92, 421.36)
+region = Rect2(-23.0494, 15.4684, 4876.92, 482.436)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbsqf"]
 atlas = ExtResource("4_cbsqf")
-region = Rect2(-33.9919, -18.6063, 4946.4, 461.472)
+region = Rect2(1.78645, -18.6063, 4910.62, 519.037)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wisxt"]
 atlas = ExtResource("4_cbsqf")

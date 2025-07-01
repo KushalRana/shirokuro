@@ -65,7 +65,7 @@ func _ready():
 	
 	#screen has shifted to slightly below ground so placing button on ground level is sufficient
 	#then move up with each offset
-	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius)
+	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius-10)
 	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2)
 	$Info.text="Game Loading"
 	
@@ -186,7 +186,7 @@ func move_screen():
 		$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y + srn_scroll_interval)
 	
 	#$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
-	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius)
+	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius-10)
 	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2)
 	
 	$BackGround.update_pos($Player/RigidBody2D.position)

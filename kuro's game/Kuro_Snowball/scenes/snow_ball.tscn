@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dn3ux3apbju6n"]
 
-[ext_resource type="Texture2D" uid="uid://xbpt7m53yslr" path="res://assets/free-pixel-art-tiny-hero-sprites/2 Owlet_Monster/Rock2.png" id="1_xkj8w"]
+[ext_resource type="Texture2D" uid="uid://dgcrp83sub6qo" path="res://assets/snowball.png" id="1_xkj8w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swj73"]
 radius = 17.0074
@@ -17,5 +17,5 @@ shape = SubResource("CircleShape2D_swj73")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 position = Vector2(-1, -5.96046e-08)
-scale = Vector2(5, 5)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_xkj8w")

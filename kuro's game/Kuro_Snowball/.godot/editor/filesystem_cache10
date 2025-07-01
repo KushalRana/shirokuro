@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1751284031
+::res://::1751357272
 icon.svg::CompressedTexture2D/CompressedTexture2D::5096821798643085362::1750920295::1750920295::1::::<><><>0<>0<>e235b24cd26b73cdc6318e72fa4aa865<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-README.md::TextFile::-1::1750920295::0::1::::<><><>0<>0<><>::
+README.md::TextFile/TextFile::-1::1750920295::0::1::::<><><>0<>0<><>::
 ::res://assets/::1751283925
 AnimationSheet_Character.png::CompressedTexture2D/CompressedTexture2D::8562546640002151087::1751283925::1751283925::1::::<><><>0<>0<>67ea44250a58be00b32fdde236e9b5cc<>res://.godot/imported/AnimationSheet_Character.png-d3cbcbc2c20421fcc2b8127c3d88e754.ctex::
 snowball.png::CompressedTexture2D/CompressedTexture2D::7585584621570938802::1751283925::1751283925::1::::<><><>0<>0<>99ddd3d576f00c341b6ce4d1a8d2abd9<>res://.godot/imported/snowball.png-065706b9cc02592104a50e2415b13eb0.ctex::
@@ -60,29 +60,33 @@ Dude_Monster_Walk_6.png::CompressedTexture2D/CompressedTexture2D::82523428477292
 Rock1.png::CompressedTexture2D/CompressedTexture2D::1770379473373529771::1751283925::1751283925::1::::<><><>0<>0<>ac892a7e5ae17e5208bda3c31cfbc038<>res://.godot/imported/Rock1.png-c3202845cc240127164df32fad1d4486.ctex::
 Rock2.png::CompressedTexture2D/CompressedTexture2D::1124702536329136435::1751283925::1751283925::1::::<><><>0<>0<>25e60d925283213d882abd0cd88efc04<>res://.godot/imported/Rock2.png-dd8329bb52b5670bb4882cf24e887e83.ctex::
 Walk_Run_Push_Dust_6.png::CompressedTexture2D/CompressedTexture2D::4174154665138245790::1751283925::1751283925::1::::<><><>0<>0<>634698bee30b391b4cfc1e3dab521528<>res://.godot/imported/Walk_Run_Push_Dust_6.png-2b1eb8167da0115ac6bf584ad2d7bf73.ctex::
-::res://assets/sprites/::1751271627
+::res://assets/sprites/::1751357568
 buttons.png::CompressedTexture2D/CompressedTexture2D::6719583535779326113::1750920295::1750920295::1::::<><><>0<>0<>b4404ab2a40a544c533d1871c78e1b91<>res://.godot/imported/buttons.png-96d40541cdc559d68cb1cf4f99b38443.ctex::
 cliffs.png::CompressedTexture2D/CompressedTexture2D::2303875938665030030::1750921597::1750921610::1::::<><><>0<>0<>9b48aa81121550f53c0d464ac4d265c6<>res://.godot/imported/cliffs.png-a1cf6e6d6efbea42dd0f2178cbcf8197.ctex::
+Frost_Buttons.png::CompressedTexture2D::3127102304881387486::1751357542::1751357571::1::::<><><>0<>0<>024e9003a97c19b51284178542d700cf<>res://.godot/imported/Frost_Buttons.png-3b8458b2c16b90817be8f38c461c0de7.ctex::
 knight.png::CompressedTexture2D/CompressedTexture2D::1602078772855919475::1750920295::1750920295::1::::<><><>0<>0<>a0908a43df5dd24cdbe1aef3838f67cb<>res://.godot/imported/knight.png-7c67c83d34932624952797d9e971a644.ctex::
+menu_background.jpg::CompressedTexture2D::1078411740108057741::1450149090::1751355126::1::::<><><>0<>0<>9aadfe4fedc8fe9bc8c679385d0d1904<>res://.godot/imported/menu_background.jpg-23aca92c68407eeb03bf0859339c48e7.ctex::
 mountain_night.jpg::CompressedTexture2D/CompressedTexture2D::3031136502485229241::1751271587::1751271627::1::::<><><>0<>0<>4decd1789cee32f8988aff41ced5f3db<>res://.godot/imported/mountain_night.jpg-fa63ca9399310a5c2d993332a7253902.ctex::
 snowball3.png::CompressedTexture2D/CompressedTexture2D::7064561659893792843::1750920295::1750920295::1::::<><><>0<>0<>4306eca871dfee897a31085b1f95f2c3<>res://.godot/imported/snowball3.png-87cc64679a4a54ff12eab4c8e1826fa7.ctex::
 snowy_night_sky.jpg::CompressedTexture2D/CompressedTexture2D::4723248039569181959::1664760148::1751011213::1::::<><><>0<>0<>9de1c40a81a1ff980bfc9b057815b305<>res://.godot/imported/snowy_night_sky.jpg-c505460cdb64caacf5a05ff5e003113c.ctex::
 snow_background_Bottom.jpg::CompressedTexture2D/CompressedTexture2D::6294784371265635784::1510306214::1751010299::1::::<><><>0<>0<>17171765513e45c11fcb30c494e0fcb8<>res://.godot/imported/snow_background_Bottom.jpg-9047c0a8abf8d56e752f7a6015c1eccd.ctex::
 snow_girl.png::CompressedTexture2D/CompressedTexture2D::7653983155340258863::1751191224::1751191278::1::::<><><>0<>0<>86dba9fe98505cd7d881b47ac363e902<>res://.godot/imported/snow_girl.png-d168ec57f73cd36eb4994fa8aeb5910f.ctex::
-::res://scenes/::1751283925
-background.tscn::PackedScene::3058526228778365935::1751283925::0::1::::<><><>0<>0<><>::uid://7658foi8glmg::::res://scripts/background.gd<>uid://cvxigc3c4ywmi::::res://assets/sprites/snow_background_Bottom.jpg<>uid://bjgkm05ofhnyn::::res://assets/sprites/mountain_night.jpg
-cliff_a.tscn::PackedScene::2403333179300078653::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-cliff_b.tscn::PackedScene::7994143299225698606::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-cliff_c.tscn::PackedScene::7637837984041621746::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-cliff_d.tscn::PackedScene::1120770657815557605::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-cliff_e.tscn::PackedScene::2354366333093247057::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-cliff_f.tscn::PackedScene::5075685163501515614::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
-game.tscn::PackedScene::714163248216410804::1751283925::0::1::::<><><>0<>0<><>::uid://cyaay7qt3f4dy::::res://scripts/game.gd<>uid://bjttqlbdjuskd::::res://scenes/background.tscn<>uid://dn3ux3apbju6n::::res://scenes/snow_ball.tscn<>uid://omj2y7mwt8hv::::res://scenes/player.tscn<>uid://c20atakrhtmy0::::res://assets/sprites/buttons.png<>uid://cuomncejh6qye::::res://scenes/obstacles.tscn
-obstacles.tscn::PackedScene::6206271459583076732::1751192079::0::1::::<><><>0<>0<><>::uid://bma0p5fy4x71w::::res://scripts/obstacles.gd<>uid://baigsttaypmkb::::res://scenes/cliff_a.tscn<>uid://dl5omwieubjb7::::res://scenes/cliff_b.tscn<>uid://dg23ctrebvhgs::::res://scenes/cliff_c.tscn<>uid://p756t56st0g4::::res://scenes/cliff_d.tscn<>uid://8sqcmm04nu6l::::res://scenes/cliff_e.tscn<>uid://cekx172b8yyy5::::res://scenes/cliff_f.tscn
-player.tscn::PackedScene::1008012323921055487::1751283925::0::1::::<><><>0<>0<><>::uid://dfsb3qc57r3vq::::res://scripts/player.gd<>uid://bvvm8ll8gltr::::res://assets/free-pixel-art-tiny-hero-sprites/3 Dude_Monster/Dude_Monster_Run_6.png<>uid://djih0t4kqejv4::::res://assets/free-pixel-art-tiny-hero-sprites/3 Dude_Monster/Dude_Monster_Idle_4.png
-snow_ball.tscn::PackedScene::8130776479939589427::1751283925::0::1::::<><><>0<>0<><>::uid://xbpt7m53yslr::::res://assets/free-pixel-art-tiny-hero-sprites/2 Owlet_Monster/Rock2.png
-::res://scripts/::1751283925
-background.gd::GDScript::2311919432426588810::1751272051::0::1::::<>Node2D<><>0<>0<><>::
-game.gd::GDScript::6457418180117692730::1751274629::0::1::::<>Node2D<><>0<>0<><>::
-obstacles.gd::GDScript::3230233103631896914::1750927954::0::1::::<>Node2D<><>0<>0<><>::
-player.gd::GDScript::7547476632934382482::1751283925::0::1::::<>Node2D<><>0<>0<><>::
+::res://scenes/::1751357362
+background.tscn::PackedScene::3058526228778365935::1751357113::0::1::::<><><>0<>0<><>::uid://7658foi8glmg::::res://scripts/background.gd<>uid://cvxigc3c4ywmi::::res://assets/sprites/snow_background_Bottom.jpg<>uid://bjgkm05ofhnyn::::res://assets/sprites/mountain_night.jpg
+cliff_a.tscn::PackedScene/PackedScene::2403333179300078653::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+cliff_b.tscn::PackedScene/PackedScene::7994143299225698606::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+cliff_c.tscn::PackedScene/PackedScene::7637837984041621746::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+cliff_d.tscn::PackedScene/PackedScene::1120770657815557605::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+cliff_e.tscn::PackedScene/PackedScene::2354366333093247057::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+cliff_f.tscn::PackedScene/PackedScene::5075685163501515614::1751005742::0::1::::<><><>0<>0<><>::uid://73araekdjb31::::res://assets/sprites/cliffs.png
+game.tscn::PackedScene::714163248216410804::1751357113::0::1::::<><><>0<>0<><>::uid://cyaay7qt3f4dy::::res://scripts/game.gd<>uid://bjttqlbdjuskd::::res://scenes/background.tscn<>uid://dn3ux3apbju6n::::res://scenes/snow_ball.tscn<>uid://omj2y7mwt8hv::::res://scenes/player.tscn<>uid://c20atakrhtmy0::::res://assets/sprites/buttons.png<>uid://cuomncejh6qye::::res://scenes/obstacles.tscn
+obstacles.tscn::PackedScene/PackedScene::6206271459583076732::1751192079::0::1::::<><><>0<>0<><>::uid://bma0p5fy4x71w::::res://scripts/obstacles.gd<>uid://baigsttaypmkb::::res://scenes/cliff_a.tscn<>uid://dl5omwieubjb7::::res://scenes/cliff_b.tscn<>uid://dg23ctrebvhgs::::res://scenes/cliff_c.tscn<>uid://p756t56st0g4::::res://scenes/cliff_d.tscn<>uid://8sqcmm04nu6l::::res://scenes/cliff_e.tscn<>uid://cekx172b8yyy5::::res://scenes/cliff_f.tscn
+player.tscn::PackedScene::1008012323921055487::1751357113::0::1::::<><><>0<>0<><>::uid://dfsb3qc57r3vq::::res://scripts/player.gd<>uid://bvvm8ll8gltr::::res://assets/free-pixel-art-tiny-hero-sprites/3 Dude_Monster/Dude_Monster_Run_6.png<>uid://djih0t4kqejv4::::res://assets/free-pixel-art-tiny-hero-sprites/3 Dude_Monster/Dude_Monster_Idle_4.png
+menu.tscn::PackedScene::5160847797482279179::1751357362::0::1::::<><><>0<>0<><>::uid://5b7s8i2gw2p0::::res://scripts/menu.gd<>uid://pmnjwcsmojhl::::res://assets/sprites/menu_background.jpg<>uid://c20atakrhtmy0::::res://assets/sprites/buttons.png
+snow_ball.tscn::PackedScene::8130776479939589427::1751357113::0::1::::<><><>0<>0<><>::uid://xbpt7m53yslr::::res://assets/free-pixel-art-tiny-hero-sprites/2 Owlet_Monster/Rock2.png
+::res://scripts/::1751357126
+background.gd::GDScript/GDScript::2311919432426588810::1751272051::0::1::::<>Node2D<><>0<>0<><>::
+game.gd::GDScript/GDScript::6457418180117692730::1751274629::0::1::::<>Node2D<><>0<>0<><>::
+obstacles.gd::GDScript/GDScript::3230233103631896914::1750927954::0::1::::<>Node2D<><>0<>0<><>::
+player.gd::GDScript::7547476632934382482::1751284479::0::1::::<>Node2D<><>0<>0<><>::
+menu.gd::GDScript::2109706521818507251::1751357126::0::1::::<>Node2D<><>0<>0<><>::
