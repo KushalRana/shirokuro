@@ -47,6 +47,10 @@ New_Game={
 "deadzone": 0.5,
 "events": []
 }
+Game_Over={
+"deadzone": 0.2,
+"events": []
+}
 
 [input_devices]
 

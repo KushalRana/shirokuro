@@ -33,6 +33,8 @@ var rnd
 
 #Generate snowball
 @export var snowball: PackedScene
+#Generate gameover menu
+@export var game_over_menu: PackedScene
 
 func _ready():
 	#srn=DisplayServer.screen_get_size()
@@ -206,6 +208,10 @@ func _on_update_timer_timeout() -> void:
 		$Info.text+="\nGame Over"
 		$Snowball_Timer.stop()
 		$Update_Timer.stop()
+		var dup=game_over_menu.instantiate()
+		dup.global_position=$Camera2D.global_position+$Camera2D.offset-srn/2.0
+		dup.move_to_front()
+		add_child(dup)
 	
 	else:
 		if player_base_height==0.0:

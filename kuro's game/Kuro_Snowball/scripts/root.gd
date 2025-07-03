@@ -15,5 +15,10 @@ func _process(delta):
 		dup.name="game"
 		add_child(dup)
 		$menu.queue_free()
+	elif Input.is_action_pressed("Game_Over"):
+		var dup=menu.instantiate()
+		dup.name="menu"
+		add_child(dup)
+		$game.queue_free()
 	
 	
