@@ -18,8 +18,9 @@ func _ready():
 	$Sprite2D/New_Game_Button.position=Vector2(-$Sprite2D/New_Game_Button.texture_normal.get_width()*5.0/2, -h/2.0+$Sprite2D/New_Game_Button.texture_normal.get_height()*3.5)
 	$Sprite2D/New_Game_Button/Label.position=Vector2(($Sprite2D/New_Game_Button.texture_normal.get_width()-$Sprite2D/New_Game_Button/Label.size.x)/2 , ($Sprite2D/New_Game_Button.texture_normal.get_height()-$Sprite2D/New_Game_Button/Label.size.y)/2)
 	
-	#debug info
-	#$Label.text=str(srn.y)
-	#$Label.text+="\n"+str(h)
-	#$Label.text+="\n"+str(2.0/3*srn.y/h)
+	$Player_Name.text="Player: "+str(Globals.player_name)
+	$Player_Name.position=Vector2(10.0,10.0)
+	
+	#debug
+	#$Player_Name.text+="\n"+OS.get_data_dir()
 	

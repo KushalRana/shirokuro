@@ -36,6 +36,7 @@ var rnd
 #Generate gameover menu
 @export var game_over_menu: PackedScene
 
+
 func _ready():
 	#srn=DisplayServer.screen_get_size()
 	srn=DisplayServer.window_get_size()
@@ -208,6 +209,9 @@ func _on_update_timer_timeout() -> void:
 		$Info.text+="\nGame Over"
 		$Snowball_Timer.stop()
 		$Update_Timer.stop()
+		Globals.cur_score=max_height
+		Globals.cur_time=survival_time
+		Globals.refresh_score()
 		var dup=game_over_menu.instantiate()
 		dup.global_position=$Camera2D.global_position+$Camera2D.offset-srn/2.0
 		dup.move_to_front()

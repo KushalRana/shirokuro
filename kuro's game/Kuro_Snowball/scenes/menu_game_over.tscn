@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l5iw7ho57kcw"]
+[gd_scene load_steps=9 format=3 uid="uid://l5iw7ho57kcw"]
 
 [ext_resource type="Script" uid="uid://cwqx38katt63h" path="res://scripts/menu_game_over.gd" id="1_vbgnx"]
 [ext_resource type="Texture2D" uid="uid://pmnjwcsmojhl" path="res://assets/sprites/menu_background.jpg" id="3_4ja6d"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjb58"]
 atlas = ExtResource("3_4ja6d")
-region = Rect2(111.267, 28.9548, 556.548, 281.332)
+region = Rect2(11.324, 4.60373, 246.643, 145.19)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhnvy"]
 atlas = ExtResource("4_f7b2p")
@@ -18,8 +18,13 @@ region = Rect2(236, 141.205, 177.333, 66.256)
 margin = Rect2(2.5, 2.5, 0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_con2f"]
-font_size = 25
+font_size = 30
 font_color = Color(0, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_56u80"]
+line_spacing = 1.0
+font_size = 15
+font_color = Color(1, 0, 0, 1)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_vbgnx")
@@ -35,11 +40,19 @@ action = "Game_Over"
 [node name="Label" type="Label" parent="Sprite2D/Game_Over_Button"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Game Over !!!"
+text = "Submit"
 label_settings = SubResource("LabelSettings_con2f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
+[node name="Game_Over_Text" type="Label" parent="Sprite2D"]
+offset_right = 92.0
 offset_bottom = 23.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_56u80")
+
+[node name="Name_Input" type="LineEdit" parent="Sprite2D"]
+offset_right = 68.5625
+offset_bottom = 31.0
+
+[connection signal="text_changed" from="Sprite2D/Name_Input" to="." method="_on_name_input_text_changed"]
