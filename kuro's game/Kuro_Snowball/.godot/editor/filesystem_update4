@@ -1,8 +1,5 @@
-res://scenes/menu_game_over.tscn
-res://scripts/menu_game_over.gd
 res://scenes/game.tscn
 res://scenes/player.tscn
 res://scenes/menu.tscn
 res://scenes/root.tscn
-res://scripts/game.gd
-res://scripts/root.gd
+res://scenes/menu_game_over.tscn

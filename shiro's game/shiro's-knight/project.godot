@@ -10,9 +10,8 @@ config_version=5
 
 [application]
 
-config/name="shiro's knight"
+config/name="shiro's 2D adventure"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
 
 [dotnet]
 
@@ -21,4 +20,3 @@ project/assembly_name="shiro-s knight"
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
