@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cmtib8ybnos3f"
-path="res://.godot/imported/spin-attack.wav-9bf6de629d29b94737f5a14006f9a0bf.sample"
+path="res://.godot/imported/spin-attack.wav-2aa836cbd761b9a1e3ac91f3dc83fa81.sample"
 
 [deps]
 
-source_file="res://assets/player_updates/audio/spin-attack.wav"
-dest_files=["res://.godot/imported/spin-attack.wav-9bf6de629d29b94737f5a14006f9a0bf.sample"]
+source_file="res://player/audio/spin-attack.wav"
+dest_files=["res://.godot/imported/spin-attack.wav-2aa836cbd761b9a1e3ac91f3dc83fa81.sample"]
 
 [params]
 
