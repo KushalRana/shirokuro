@@ -1,6 +1,11 @@
-res://scenes/game.tscn
+res://scripts/menu_game_over.gd
+res://scenes/menu_game_over.tscn
 res://addons/silent_wolf/assets/themes/sw_theme.tres
+res://scripts/root.gd
+res://scenes/game.tscn
 res://scenes/player.tscn
 res://scenes/menu.tscn
 res://scenes/root.tscn
-res://scenes/menu_game_over.tscn
+res://scripts/menu.gd
+res://scripts/Globals.gd
+res://scripts/game.gd
