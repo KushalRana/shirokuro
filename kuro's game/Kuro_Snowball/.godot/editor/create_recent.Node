@@ -1,7 +1,8 @@
+Tree
+Label
 LineEdit
 TextEdit
 Sprite2D
-Label
 TouchScreenButton
 CollisionPolygon2D
 StaticBody2D

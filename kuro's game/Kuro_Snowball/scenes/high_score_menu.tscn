@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bff6b1wxps2jg"]
+
+[ext_resource type="Script" uid="uid://cpsmc34jmxc2a" path="res://scripts/high_score_menu.gd" id="1_pq0bp"]
+
+[node name="High_Score_Menu" type="Node2D"]
+script = ExtResource("1_pq0bp")
+
+[node name="Tree" type="Tree" parent="."]
+offset_right = 16.0
+offset_bottom = 17.0
+columns = 4
+column_titles_visible = true
+hide_root = true

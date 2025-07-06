@@ -56,6 +56,10 @@ Game_Over={
 "deadzone": 0.2,
 "events": []
 }
+High_Score_Menu={
+"deadzone": 0.2,
+"events": []
+}
 
 [input_devices]
 
