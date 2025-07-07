@@ -53,11 +53,15 @@ New_Game={
 "events": []
 }
 Game_Over={
-"deadzone": 0.2,
+"deadzone": 0.5,
 "events": []
 }
 High_Score_Menu={
-"deadzone": 0.2,
+"deadzone": 0.5,
+"events": []
+}
+High_Score_Back={
+"deadzone": 0.5,
 "events": []
 }
 

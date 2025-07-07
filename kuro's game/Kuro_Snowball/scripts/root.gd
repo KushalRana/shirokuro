@@ -36,4 +36,9 @@ func _process(delta):
 		dup.name="high_score"
 		add_child(dup)
 		$menu.queue_free()
+	elif Input.is_action_pressed("High_Score_Back"):
+		var dup=menu.instantiate()
+		dup.name="menu"
+		add_child(dup)
+		$high_score.queue_free()
 	
