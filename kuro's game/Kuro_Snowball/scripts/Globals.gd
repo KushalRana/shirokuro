@@ -9,6 +9,18 @@ var player_time=null
 var cur_score=null
 var cur_time=null
 
+var srn=DisplayServer.window_get_size()
+
+func _ready():
+	SilentWolf.configure({
+		"api_key": "W3YExim0YC6S6VBupAsUj8jK9RuxxPVktpwXHTK3",
+		"game_id": "Snowball1",
+		"log_level": 1})
+
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://scenes/root.tscn"
+	})
+
 func refresh_score():
 	if(cur_score>player_score):
 		player_score=cur_score

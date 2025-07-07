@@ -46,6 +46,19 @@ label_settings = SubResource("LabelSettings_con2f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="High_Score_Button" type="TouchScreenButton" parent="Sprite2D"]
+texture_normal = SubResource("AtlasTexture_mhnvy")
+texture_pressed = SubResource("AtlasTexture_con2f")
+action = "High_Score_Menu"
+
+[node name="Label" type="Label" parent="Sprite2D/High_Score_Button"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "High Score"
+label_settings = SubResource("LabelSettings_con2f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Player_Name" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
