@@ -1,8 +1,8 @@
+res://scenes/high_score_menu.tscn
+res://scripts/Globals.gd
 res://scenes/game.tscn
 res://scenes/player.tscn
 res://scenes/menu.tscn
 res://scenes/root.tscn
 res://scenes/menu_game_over.tscn
-res://scenes/high_score_menu.tscn
 res://scripts/high_score_menu.gd
-res://scripts/root.gd

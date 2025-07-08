@@ -12,8 +12,9 @@ var cur_time=null
 var srn=DisplayServer.window_get_size()
 
 func _ready():
+	#encrypt_SilentWolf_ID()
 	SilentWolf.configure({
-		"api_key": "W3YExim0YC6S6VBupAsUj8jK9RuxxPVktpwXHTK3",
+		"api_key": decrypt_SilentWolf_ID(),
 		"game_id": "Snowball1",
 		"log_level": 1})
 
@@ -54,3 +55,18 @@ func save_player():
 	var info={"p_name":player_name,"time":player_time}
 	SilentWolf.Scores.save_score(str(player_id),player_score,"main",info)
 	#SilentWolf.Scores.save_score(player_name,player_score)
+
+func encrypt_SilentWolf_ID():
+	var key=""
+	var file_name="res://addons/cache.file"
+	#3rd param password = 2col1
+	var f = FileAccess.open_encrypted_with_pass(file_name, FileAccess.WRITE,"")
+	f.store_var(key)
+
+func decrypt_SilentWolf_ID():
+	var file_name="res://addons/cache.file"
+	var f=FileAccess.open_encrypted_with_pass(file_name, FileAccess.READ,"1qaz2wsx")
+	if(f!=null):
+		return f.get_var()
+	else:
+		return ""

@@ -3,54 +3,6 @@ extends Node2D
 var mandatory_number_of_top_scores = 5
 var score_around_player = 3
 
-func _on_position_get(param):
-	var root = $Tree.get_root()
-	var node
-	var above=param["scores_above"]
-	var below=param["scores_below"]
-	#create separator if below top scores
-	if ((int(param["position"])-score_around_player)>(mandatory_number_of_top_scores+1)):
-		node=$Tree.create_item(root)
-		node.set_text(0,":")
-		node.set_text(1,":")
-		node.set_text(2,":")
-		node.set_text(3,":")
-	for s in above:
-		var pos=int(s.position)			
-		if(pos>mandatory_number_of_top_scores):
-			node=$Tree.create_item(root)
-			node.set_text(0,str(pos))
-			node.set_text(1,str(s.metadata["p_name"]))
-			node.set_text(2,str(s.score) + " m")
-			node.set_text(3,str(s.metadata["time"]) + "s")
-			
-			if s.player_name==str(Globals.player_id):
-				node.set_custom_color(0,Color(255.0,0.0,0.0))
-				node.set_custom_color(1,Color(255.0,0.0,0.0))
-				node.set_custom_color(2,Color(255.0,0.0,0.0))
-				node.set_custom_color(3,Color(255.0,0.0,0.0))
-				
-	#For debugging
-	#node=$Tree.create_item(root)
-	#node.set_text(0,str(param["position"]))
-	#node.set_text(1,"Blank")
-	
-	#The current score pass in takes up a space and the rest are pushed down
-	#So actual position is -1
-	for s in below:
-		node=$Tree.create_item(root)
-		node.set_text(0,str(int(s.position-1)))
-		node.set_text(1,str(s.metadata["p_name"]))
-		node.set_text(2,str(s.score) + " m")
-		node.set_text(3,str(s.metadata["time"]) + "s")
-		
-		if s.player_name==str(Globals.player_id):
-			node.set_custom_color(0,Color(255.0,0.0,0.0))
-			node.set_custom_color(1,Color(255.0,0.0,0.0))
-			node.set_custom_color(2,Color(255.0,0.0,0.0))
-			node.set_custom_color(3,Color(255.0,0.0,0.0))
-			
-	$Loading_Text.text=""	
 
 func _ready():
 	#Set Screen to loading
@@ -109,3 +61,51 @@ func _ready():
 		#clear loading text
 		$Loading_Text.text=""
 		
+func _on_position_get(param):
+	var root = $Tree.get_root()
+	var node
+	var above=param["scores_above"]
+	var below=param["scores_below"]
+	#create separator if below top scores
+	if ((int(param["position"])-score_around_player)>(mandatory_number_of_top_scores+1)):
+		node=$Tree.create_item(root)
+		node.set_text(0,":")
+		node.set_text(1,":")
+		node.set_text(2,":")
+		node.set_text(3,":")
+	for s in above:
+		var pos=int(s.position)			
+		if(pos>mandatory_number_of_top_scores):
+			node=$Tree.create_item(root)
+			node.set_text(0,str(pos))
+			node.set_text(1,str(s.metadata["p_name"]))
+			node.set_text(2,str(s.score) + " m")
+			node.set_text(3,str(s.metadata["time"]) + "s")
+			
+			if s.player_name==str(Globals.player_id):
+				node.set_custom_color(0,Color(255.0,0.0,0.0))
+				node.set_custom_color(1,Color(255.0,0.0,0.0))
+				node.set_custom_color(2,Color(255.0,0.0,0.0))
+				node.set_custom_color(3,Color(255.0,0.0,0.0))
+				
+	#For debugging
+	#node=$Tree.create_item(root)
+	#node.set_text(0,str(param["position"]))
+	#node.set_text(1,"Blank")
+	
+	#The current score pass in takes up a space and the rest are pushed down
+	#So actual position is -1
+	for s in below:
+		node=$Tree.create_item(root)
+		node.set_text(0,str(int(s.position-1)))
+		node.set_text(1,str(s.metadata["p_name"]))
+		node.set_text(2,str(s.score) + " m")
+		node.set_text(3,str(s.metadata["time"]) + "s")
+		
+		if s.player_name==str(Globals.player_id):
+			node.set_custom_color(0,Color(255.0,0.0,0.0))
+			node.set_custom_color(1,Color(255.0,0.0,0.0))
+			node.set_custom_color(2,Color(255.0,0.0,0.0))
+			node.set_custom_color(3,Color(255.0,0.0,0.0))
+			
+	$Loading_Text.text=""	
