@@ -1,21 +1,23 @@
 extends Node2D
 
-var srn
+#var srn
 
 func _ready():
-	srn=DisplayServer.window_get_size()
+	#srn=DisplayServer.window_get_size()
+	$Background.position=Vector2(Globals.srn.x/2,Globals.srn.y/2)
+	#$Background.scale=1.0*Globals.srn/$Background.texture.get_size()
 	
 	var h=$Sprite2D.texture.get_height()
 	var w=$Sprite2D.texture.get_width()
 	
-	var h_ratio = 2.0/3*srn.y/h
-	var w_ratio = 2.5/3*srn.x/w
+	var h_ratio = 2.0/3*Globals.srn.y/h
+	var w_ratio = 2.5/3*Globals.srn.x/w
 	
 	$Player_Name.text="Player: "+str(Globals.player_name)
 	$Player_Name.position=Vector2(10.0,10.0)
 	
 	$Sprite2D.scale=Vector2(w_ratio,h_ratio)
-	$Sprite2D.position=Vector2(srn.x/2,srn.y/2)
+	$Sprite2D.position=Vector2(Globals.srn.x/2,Globals.srn.y/2)
 
 	$Sprite2D/New_Game_Button.scale=Vector2(5.0,3.5)
 	$Sprite2D/New_Game_Button.position=Vector2(-$Sprite2D/New_Game_Button.texture_normal.get_width()*5.0/2, -h/2.0+$Sprite2D/New_Game_Button.texture_normal.get_height()*3.5)
@@ -27,4 +29,7 @@ func _ready():
 	
 	#debug
 	#$Player_Name.text+="\n"+OS.get_data_dir()
+	#$Player_Name.text+="\n srn x:"+str(Globals.srn.x)+" y: "+str(Globals.srn.y)
+	#$Player_Name.text+="\n bg image x:"+str(w)+" y: "+str(h)
+	#$Player_Name.text+="\n bg scale x:"+str(snapped($Sprite2D.scale.x,0.01))+" y: "+str(snapped($Sprite2D.scale.y,0.01))
 	

@@ -1,6 +1,6 @@
 extends Node2D
 
-var srn #to hold screen size
+#var srn #to hold screen size
 var force #affects acceleration
 var max_spd
 
@@ -31,6 +31,9 @@ var last_obstacle_y
 var obstacle_interval
 var rnd
 
+var snowball_scale
+var jump_button_diameter
+
 #Generate snowball
 @export var snowball: PackedScene
 #Generate gameover menu
@@ -39,19 +42,24 @@ var rnd
 
 func _ready():
 	#srn=DisplayServer.screen_get_size()
-	srn=DisplayServer.window_get_size()
+	Globals.srn=DisplayServer.window_get_size()
 	#For player to fall onto the ground
 	$Player.global_position=Vector2(50.0,-10)
 	
-	force=20.0
-	max_spd=300.0
+	#force=20.0
+	#max_spd=300.0
+	force=8.0
+	max_spd=130.0
+	if $Player.player_scale>0:
+		force*=$Player.player_scale
+		max_spd*=$Player.player_scale
 	$Player/RigidBody2D.contact_monitor=true
 	$Player/RigidBody2D.max_contacts_reported=20; 
 	
 	$Snowball_Timer.start()
 	
-	srn_x=srn.x/2
-	srn_y=srn.y/2
+	srn_x=Globals.srn.x/2
+	srn_y=Globals.srn.y/2
 	joystick_on=false
 	base_pos = Vector2(0,0)
 	dir=0
@@ -62,14 +70,17 @@ func _ready():
 	player_base_height=0.0
 	
 	#Position camera	
-	$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
-	$Camera2D.offset=Vector2(0.0,-srn.y/4) #player 2/3 from top of screen
-	srn_scroll_interval = srn.y/8
+	$Camera2D.global_position=Vector2(Globals.srn.x/2,$Player/RigidBody2D.global_position.y)
+	$Camera2D.offset=Vector2(0.0,-Globals.srn.y/4) #player 2/3 from top of screen
+	srn_scroll_interval = Globals.srn.y/8
 	
 	#screen has shifted to slightly below ground so placing button on ground level is sufficient
 	#then move up with each offset
-	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius-10)
-	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2)
+	var jump_button_scale=1.0/5*Globals.srn.x/($JumpButton.shape.radius*2.0)
+	jump_button_diameter=($JumpButton.shape.radius * 2.0 * jump_button_scale)
+	$JumpButton.scale=Vector2(jump_button_scale,jump_button_scale)
+	$JumpButton.position=Vector2(Globals.srn.x-10-jump_button_diameter , $Camera2D.global_position.y + $Camera2D.offset.y + Globals.srn.y/2 - jump_button_diameter-10)
+	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - Globals.srn.y/2)
 	$Info.text="Game Loading"
 	
 	
@@ -85,12 +96,14 @@ func _ready():
 	overflow_snowball_limit=10
 	
 	last_obstacle_y=0.0 #to hwlp limit obstacles placed
-	obstacle_interval=srn.y/3
+	obstacle_interval=Globals.srn.y/3
 	rnd=RandomNumberGenerator.new()
 	rnd.randomize()
 	
+	snowball_scale=-1
+	
 
-func _process(delta):
+func _process(_delta):
 	#keyboard handle
 	if Input.is_action_pressed("Move_Right"):
 		move_right()
@@ -124,41 +137,26 @@ func _process(delta):
 func _on_snowball_timer_timeout() -> void:
 	var dup=snowball.instantiate()
 	#Dropping from abit higher is fine
-	dup.position=Vector2(randf_range(0,srn.x) , $Camera2D.global_position.y + $Camera2D.offset.y - 1.5 * srn.y)
+	dup.position=Vector2(randf_range(0,Globals.srn.x) , $Camera2D.global_position.y + $Camera2D.offset.y - 1.5 * Globals.srn.y)
 	##Add speed to prevent detection of gameover
 	dup.find_child("RigidBody2D").linear_velocity=Vector2(0.0,0.01)
+	#handle scaling to 1/5th the screen width
+	if snowball_scale<0:
+		snowball_scale=1.0/5*Globals.srn.x/dup.find_child("RigidBody2D").find_child("Sprite2D").texture.get_width()
+	dup.find_child("RigidBody2D").find_child("Sprite2D").scale=Vector2(snowball_scale,snowball_scale)
+	dup.find_child("RigidBody2D").find_child("CollisionShape2D").scale*=Vector2(snowball_scale,snowball_scale)
 	add_child(dup)
 	
 	dup.add_to_group("new_snowballs")
 	
 #Handling joystick
 func _input(event):
-	#if screen touched
-	if event is InputEventScreenTouch:
-		#And is pressed at bottom left (can fine tune location)
-		if event.is_released():
-			joystick_on=false
-			base_pos=Vector2(0.0,0.0)
-			dir=0
-		elif event.is_pressed() && event.position.x<srn_x && event.position.y>srn_y:
-			#the joystick is pressed on and start point is recorded
-			joystick_on=true
-			base_pos=event.position
-		#else turn joystick off just in case
-		else:
-			joystick_on=false
-			base_pos=Vector2(0.0,0.0)
-			dir=0
-	#if is screen drag
-	elif event is InputEventScreenDrag:
-		#if joystick is on then act on it
-		if joystick_on == true:
-			#The action here is to apply force in the direction but can be other logics
-			dir=event.position.x-base_pos.x
-			if dir>0:
-				move_right()
-			elif dir<0:
-				move_left()
+	#if screen drag at lower left, set flag to move player. Actual movement in _process
+	if event is InputEventScreenDrag && event.position.x<srn_x && event.position.y>srn_y:
+		dir=event.get_relative().x
+	#joystick release if not screen release on the jump button
+	if event is InputEventScreenTouch && event.is_released() && ((Globals.srn.x-event.position.x-jump_button_diameter)>0  || (Globals.srn.y-event.position.y-jump_button_diameter)>0):
+		dir=0.0
 			
 func move_right():
 	$Player/RigidBody2D.apply_impulse(Vector2(force,0.0))
@@ -184,24 +182,23 @@ func move_screen():
 	#Move camera with player along the Y axis
 	var offset = $Player/RigidBody2D.global_position.y - $Camera2D.global_position.y 
 	if offset > srn_scroll_interval:
-		$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y - srn_scroll_interval)
+		$Camera2D.global_position=Vector2(Globals.srn.x/2,$Player/RigidBody2D.global_position.y - srn_scroll_interval)
 	elif offset < -srn_scroll_interval:
-		$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y + srn_scroll_interval)
+		$Camera2D.global_position=Vector2(Globals.srn.x/2,$Player/RigidBody2D.global_position.y + srn_scroll_interval)
 	
-	#$Camera2D.global_position=Vector2(srn.x/2,$Player/RigidBody2D.global_position.y)
-	$JumpButton.position=Vector2(srn.x-10-$JumpButton.shape.radius , $Camera2D.global_position.y + $Camera2D.offset.y + srn.y/2 - $JumpButton.shape.radius-10)
-	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2)
+	$JumpButton.position=Vector2(Globals.srn.x-10-jump_button_diameter , $Camera2D.global_position.y + $Camera2D.offset.y + Globals.srn.y/2 - jump_button_diameter-10)
+	$Info.position=Vector2(0.0,$Camera2D.global_position.y + $Camera2D.offset.y - Globals.srn.y/2)
 	
 	$BackGround.update_pos($Player/RigidBody2D.position)
 	
-	var cur_pos_y=$Camera2D.global_position.y + $Camera2D.offset.y - srn.y/2
+	var cur_pos_y=$Camera2D.global_position.y + $Camera2D.offset.y - Globals.srn.y/2
 	#if scroll screen up, check if should add an obstacle
 	if(cur_pos_y<(last_obstacle_y-obstacle_interval) && rnd.randi()%2): #decide if should add obstacle
 		last_obstacle_y=cur_pos_y
 		var flip=rnd.randi()%2
 		var obstacle_x = 0.0
 		if(flip): #decide if should be left or right
-			obstacle_x=srn.x
+			obstacle_x=Globals.srn.x
 		$Obstacles.add_obstacle(rnd.randi()%6+1,Vector2(obstacle_x, last_obstacle_y),flip)
 
 func _on_update_timer_timeout() -> void:
@@ -213,7 +210,7 @@ func _on_update_timer_timeout() -> void:
 		Globals.cur_time=survival_time
 		Globals.refresh_score()
 		var dup=game_over_menu.instantiate()
-		dup.global_position=$Camera2D.global_position+$Camera2D.offset-srn/2.0
+		dup.global_position=$Camera2D.global_position+$Camera2D.offset-Globals.srn/2.0
 		dup.move_to_front()
 		add_child(dup)
 	
@@ -228,6 +225,8 @@ func _on_update_timer_timeout() -> void:
 		$Info.text="Current Height :" + str(cur_height) + " M\n"
 		$Info.text+="Max Height: " + str(max_height) + " M\n"
 		$Info.text+="Survival Time: " + str(snapped(survival_time,1)) + " seconds"
+		#debug:
+		#$Info.text+="\nButton: " + str($JumpButton.global_position.x-$JumpButton.shape.get_rect().size.x) + " ,"
 		
 		#Difficulty up every 10 seconds
 		#but cap at 0.05 sec interval
@@ -237,8 +236,8 @@ func _on_update_timer_timeout() -> void:
 			$Snowball_Timer.wait_time=spd
 						
 func check_gameOver():
-	var srn_top_y=$Camera2D.global_position.y+$Camera2D.offset.y-srn.y/2
-	var danger_zone=$Camera2D.global_position.y+$Camera2D.offset.y-srn.y/4
+	var srn_top_y=$Camera2D.global_position.y+$Camera2D.offset.y-Globals.srn.y/2
+	var danger_zone=$Camera2D.global_position.y+$Camera2D.offset.y-Globals.srn.y/4
 	var stationary_count=0
 	
 	var snowballs = get_tree().get_nodes_in_group("new_snowballs")
@@ -249,7 +248,7 @@ func check_gameOver():
 			#to prevent balls stuck on cliffs
 			if ball.global_position.y < danger_zone:
 				#if left nudge right, else nudege left
-				if ball.global_position.x < srn.x/2 :
+				if ball.global_position.x < Globals.srn.x/2 :
 					ball.apply_impulse(Vector2(1.0,0.0))
 				else:
 					ball.apply_impulse(Vector2(-1.0,0.0))

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjgkm05ofhnyn"
-path="res://.godot/imported/mountain_night.jpg-fa63ca9399310a5c2d993332a7253902.ctex"
+uid="uid://do7j7ivv1wg3c"
+path="res://.godot/imported/stary_night_sky_4.jpg-2f55a74c0dfced18bab9aad16de45dda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mountain_night.jpg"
-dest_files=["res://.godot/imported/mountain_night.jpg-fa63ca9399310a5c2d993332a7253902.ctex"]
+source_file="res://assets/sprites/stary_night_sky_4.jpg"
+dest_files=["res://.godot/imported/stary_night_sky_4.jpg-2f55a74c0dfced18bab9aad16de45dda.ctex"]
 
 [params]
 

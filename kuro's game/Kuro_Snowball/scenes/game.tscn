@@ -37,7 +37,6 @@ position = Vector2(2, 0)
 
 [node name="JumpButton" type="TouchScreenButton" parent="."]
 top_level = true
-scale = Vector2(0.5, 0.5)
 texture_normal = SubResource("AtlasTexture_p57ef")
 texture_pressed = SubResource("AtlasTexture_u5sy4")
 shape = SubResource("CircleShape2D_u5sy4")

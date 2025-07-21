@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfr7n6b2bv2f4"]
+[gd_scene load_steps=11 format=3 uid="uid://cfr7n6b2bv2f4"]
 
 [ext_resource type="Script" uid="uid://5b7s8i2gw2p0" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://pmnjwcsmojhl" path="res://assets/sprites/menu_background.jpg" id="1_yqeox"]
-[ext_resource type="Texture2D" uid="uid://bjgkm05ofhnyn" path="res://assets/sprites/mountain_night.jpg" id="2_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://b6n0lw73fl6f" path="res://assets/sprites/mountain_night_v2.jpg" id="2_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://bks16hkpoemnu" path="res://assets/sprites/Frost_Buttons.png" id="3_con2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ytvr"]
 atlas = ExtResource("2_mhnvy")
+region = Rect2(-4.5506, -12.2304, 2386.24, 1629.66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjb58"]
 atlas = ExtResource("1_yqeox")
@@ -23,6 +24,8 @@ margin = Rect2(2.5, 2.5, 0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_con2f"]
 font_size = 25
 font_color = Color(0, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mhnvy"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_vjb58")
@@ -62,3 +65,4 @@ vertical_alignment = 1
 [node name="Player_Name" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_mhnvy")

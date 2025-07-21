@@ -24,16 +24,18 @@ func add_obstacle(item,pos,flip):
 	elif(item==6):
 		dup=cliff_f.instantiate()
 		
-	var scale = 0.3 #if 3 means 1/3 the size
+	var cliff_height=dup.find_child("StaticBody2D").find_child("Sprite2D").texture.get_height()
+	
+	var rescale = 2.7/10*Globals.srn.x/cliff_height
 	dup.rotation_degrees=90.0
 	dup.position+=pos
 	#shift half the height from 0,0 with scaling
 	#if flip x axis, since rotated, is x position shift and y position scale
 	if(flip):
-		dup.position+=Vector2(-dup.find_child("StaticBody2D").find_child("Sprite2D").texture.get_height()*scale/2,0.0)
-		dup.scale=Vector2(scale,-scale)
+		dup.position+=Vector2(-cliff_height*rescale/2,0.0)
+		dup.scale=Vector2(rescale,-rescale)
 	else:
-		dup.position+=Vector2(dup.find_child("StaticBody2D").find_child("Sprite2D").texture.get_height()*scale/2,0.0)
-		dup.scale=Vector2(scale,scale)
+		dup.position+=Vector2(cliff_height*rescale/2,0.0)
+		dup.scale=Vector2(rescale,rescale)
 	
 	add_child(dup)

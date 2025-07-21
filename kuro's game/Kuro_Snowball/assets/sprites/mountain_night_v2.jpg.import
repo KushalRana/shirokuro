@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8j8g8exlgy8f"
-path="res://.godot/imported/snowy_night_sky.jpg-c505460cdb64caacf5a05ff5e003113c.ctex"
+uid="uid://b6n0lw73fl6f"
+path="res://.godot/imported/mountain_night_v2.jpg-c5c5535a58ffa778128fbdd4459831d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/snowy_night_sky.jpg"
-dest_files=["res://.godot/imported/snowy_night_sky.jpg-c505460cdb64caacf5a05ff5e003113c.ctex"]
+source_file="res://assets/sprites/mountain_night_v2.jpg"
+dest_files=["res://.godot/imported/mountain_night_v2.jpg-c5c5535a58ffa778128fbdd4459831d6.ctex"]
 
 [params]
 

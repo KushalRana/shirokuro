@@ -19,7 +19,8 @@ func _ready():
 	
 	#get_tree().change_scene_to_file("res://addons/silent_wolf/Auth/Login.tscn")
 	
-func _process(delta):
+	
+func _process(_delta):
 	if Input.is_action_pressed("New_Game"):
 		var dup=game.instantiate()
 		dup.name="game"
