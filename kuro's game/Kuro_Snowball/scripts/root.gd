@@ -12,11 +12,6 @@ func _ready():
 	dup.name="menu"
 	add_child(dup)
 	
-	#var dup=login.instantiate()
-	#dup.name="login"
-	#dup.scale=Vector2(0.25,0.25)
-	#add_child(dup)
-	
 	#get_tree().change_scene_to_file("res://addons/silent_wolf/Auth/Login.tscn")
 	
 	

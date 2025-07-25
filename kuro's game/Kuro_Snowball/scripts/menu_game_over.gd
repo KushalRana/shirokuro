@@ -1,15 +1,12 @@
 extends Node2D
 
-var srn
-
 func _ready():
-	srn=DisplayServer.window_get_size()
 	
 	var h=$Sprite2D.texture.get_height()
 	var w=$Sprite2D.texture.get_width()
 	
-	var h_ratio = 2.0/7*srn.y/h
-	var w_ratio = 2.5/3*srn.x/w
+	var h_ratio = 2.0/7*Globals.srn.y/h
+	var w_ratio = 2.5/3*Globals.srn.x/w
 	
 	if h_ratio<w_ratio:
 		w_ratio=h_ratio
@@ -17,7 +14,7 @@ func _ready():
 		h_ratio=w_ratio
 
 	$Sprite2D.scale=Vector2(w_ratio,h_ratio)
-	$Sprite2D.position=Vector2(srn.x/2,srn.y/2)
+	$Sprite2D.position=Vector2(Globals.srn.x/2,Globals.srn.y/2)
 
 	var button_scale_x = 3.0/8 * w / $Sprite2D/Game_Over_Button.texture_normal.get_width()
 	var button_scale_y =  2.0/8 * h / $Sprite2D/Game_Over_Button.texture_normal.get_height()
@@ -37,8 +34,21 @@ func _ready():
 	$Sprite2D/Name_Input.position=Vector2(-w/2.0,h/2.0-$Sprite2D/Name_Input.get_rect().size.y-5)
 	$Sprite2D/Name_Input.text=Globals.player_name
 	
+	$Sprite2D/Name_Input.grab_focus()
 	
+	$Sprite2D/Name_Input/focus_name_input.position=Vector2($Sprite2D/Name_Input.get_rect().size.x/2,$Sprite2D/Name_Input.get_rect().size.y/2)
+	$Sprite2D/Name_Input/focus_name_input.shape.size=Vector2($Sprite2D/Name_Input.get_rect().size.x,$Sprite2D/Name_Input.get_rect().size.y)
+	$Sprite2D/Name_Input/Name_Input_Left.scale=Vector2($Sprite2D/Name_Input.get_rect().size.x/$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_width()/3.0,$Sprite2D/Name_Input.get_rect().size.y/$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_height())
+	$Sprite2D/Name_Input/Name_Input_Left.position=Vector2($Sprite2D/Name_Input.get_rect().size.x+$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_width()*$Sprite2D/Name_Input/Name_Input_Left.scale.x,$Sprite2D/Name_Input.get_rect().size.y)
 
 
 func _on_name_input_text_changed(new_text: String) -> void:
 	Globals.player_name=$Sprite2D/Name_Input.text
+
+func _on_focus_name_input_pressed() -> void:
+	if $Sprite2D/Name_Input.has_focus():
+		$Sprite2D/Name_Input.release_focus()
+	$Sprite2D/Name_Input.grab_focus()
+
+func _on_name_input_left_pressed() -> void:
+	$Sprite2D/Name_Input.caret_column=max($Sprite2D/Name_Input.caret_column-1,0)

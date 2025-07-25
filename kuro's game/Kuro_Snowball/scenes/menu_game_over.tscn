@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://l5iw7ho57kcw"]
+[gd_scene load_steps=12 format=3 uid="uid://l5iw7ho57kcw"]
 
 [ext_resource type="Script" uid="uid://cwqx38katt63h" path="res://scripts/menu_game_over.gd" id="1_vbgnx"]
 [ext_resource type="Texture2D" uid="uid://pmnjwcsmojhl" path="res://assets/sprites/menu_background.jpg" id="3_4ja6d"]
@@ -25,6 +25,15 @@ font_color = Color(0, 0, 1, 1)
 line_spacing = 1.0
 font_size = 15
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56u80"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56u80"]
+atlas = ExtResource("4_f7b2p")
+region = Rect2(136.084, 40.7581, 83.2634, 88.5781)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbgnx"]
+size = Vector2(83, 89)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_vbgnx")
@@ -54,5 +63,16 @@ label_settings = SubResource("LabelSettings_56u80")
 [node name="Name_Input" type="LineEdit" parent="Sprite2D"]
 offset_right = 68.5625
 offset_bottom = 31.0
+max_length = 50
+
+[node name="focus_name_input" type="TouchScreenButton" parent="Sprite2D/Name_Input"]
+shape = SubResource("RectangleShape2D_56u80")
+
+[node name="Name_Input_Left" type="TouchScreenButton" parent="Sprite2D/Name_Input"]
+rotation = 3.14159
+texture_normal = SubResource("AtlasTexture_56u80")
+shape = SubResource("RectangleShape2D_vbgnx")
 
 [connection signal="text_changed" from="Sprite2D/Name_Input" to="." method="_on_name_input_text_changed"]
+[connection signal="pressed" from="Sprite2D/Name_Input/focus_name_input" to="." method="_on_focus_name_input_pressed"]
+[connection signal="pressed" from="Sprite2D/Name_Input/Name_Input_Left" to="." method="_on_name_input_left_pressed"]

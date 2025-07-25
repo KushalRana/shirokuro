@@ -1,5 +1,6 @@
-Label
 TouchScreenButton
+Node2D
+Label
 Tree
 LineEdit
 TextEdit

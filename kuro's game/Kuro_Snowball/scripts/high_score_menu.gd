@@ -17,7 +17,7 @@ func _ready():
 	#var scale_y=2.0/9.0*Globals.srn.y/$Back_Button.texture_normal.get_height()
 	$Back_Button.scale=Vector2(scale_x,scale_x)
 	$Back_Button.position=Vector2(7.0/9.0*Globals.srn.x - 10, Globals.srn.y - $Back_Button.texture_normal.get_height()*scale_x - 10)
-	
+		
 	#scale button text
 	var scale_text=7.0/9.0*$Back_Button.texture_normal.get_height()/$Back_Button/Label.size.y
 	$Back_Button/Label.scale=Vector2(scale_text,scale_text)
@@ -26,6 +26,7 @@ func _ready():
 	var player_found=false
 	if Globals.player_id==null:
 		player_found=true
+		
 	SilentWolf.Scores.get_scores(mandatory_number_of_top_scores)
 	await SilentWolf.Scores.sw_get_scores_complete
 	var p=1
@@ -35,6 +36,7 @@ func _ready():
 	$Tree.set_column_title(3,"Time")
 	$Tree.size=Vector2(Globals.srn.x,Globals.srn.y)
 	var root = $Tree.create_item()
+	
 	for s in SilentWolf.Scores.scores:
 		var node=$Tree.create_item(root)
 		#Player_id is in s.player_name)
@@ -60,7 +62,7 @@ func _ready():
 	else:
 		#clear loading text
 		$Loading_Text.text=""
-		
+	
 func _on_position_get(param):
 	var root = $Tree.get_root()
 	var node
@@ -88,10 +90,6 @@ func _on_position_get(param):
 				node.set_custom_color(2,Color(255.0,0.0,0.0))
 				node.set_custom_color(3,Color(255.0,0.0,0.0))
 				
-	#For debugging
-	#node=$Tree.create_item(root)
-	#node.set_text(0,str(param["position"]))
-	#node.set_text(1,"Blank")
 	
 	#The current score pass in takes up a space and the rest are pushed down
 	#So actual position is -1

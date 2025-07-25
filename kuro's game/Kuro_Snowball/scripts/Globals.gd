@@ -11,6 +11,8 @@ var cur_time=null
 
 var srn=DisplayServer.window_get_size()
 
+var debug_logs=""
+
 func _ready():
 	#encrypt_SilentWolf_ID()
 	SilentWolf.configure({

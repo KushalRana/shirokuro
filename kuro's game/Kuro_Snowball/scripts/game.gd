@@ -48,7 +48,7 @@ func _ready():
 	
 	#force=20.0
 	#max_spd=300.0
-	force=8.0
+	force=9.0
 	max_spd=130.0
 	if $Player.player_scale>0:
 		force*=$Player.player_scale
@@ -101,6 +101,7 @@ func _ready():
 	rnd.randomize()
 	
 	snowball_scale=-1
+	$BackGround.change_scale($Player.player_scale/2.5)
 	
 
 func _process(_delta):
@@ -167,7 +168,7 @@ func move_left():
 	$Player/RigidBody2D/AnimatedSprite2D.flip_h=true
 		
 func jump():
-	$Player/RigidBody2D.apply_impulse(Vector2(0.0, -force*70))
+	$Player/RigidBody2D.apply_impulse(Vector2(0.0, -force*60))
 	
 func cap_spd():
 #cap the speed
@@ -219,6 +220,8 @@ func _on_update_timer_timeout() -> void:
 			player_base_height=$Player/RigidBody2D.global_position.y
 		#Display update
 		cur_height=-snapped(($Player/RigidBody2D.global_position.y-player_base_height)/10,0.01)
+		#apply scaling to the score (to be similar to development's phase's score)
+		cur_height*=snapped(2.5/$Player.player_scale,0.01)
 		max_height=max(max_height,cur_height)
 		survival_time+=$Update_Timer.wait_time
 		
