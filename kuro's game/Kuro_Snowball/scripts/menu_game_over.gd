@@ -40,6 +40,8 @@ func _ready():
 	$Sprite2D/Name_Input/focus_name_input.shape.size=Vector2($Sprite2D/Name_Input.get_rect().size.x,$Sprite2D/Name_Input.get_rect().size.y)
 	$Sprite2D/Name_Input/Name_Input_Left.scale=Vector2($Sprite2D/Name_Input.get_rect().size.x/$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_width()/3.0,$Sprite2D/Name_Input.get_rect().size.y/$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_height())
 	$Sprite2D/Name_Input/Name_Input_Left.position=Vector2($Sprite2D/Name_Input.get_rect().size.x+$Sprite2D/Name_Input/Name_Input_Left.texture_normal.get_width()*$Sprite2D/Name_Input/Name_Input_Left.scale.x,$Sprite2D/Name_Input.get_rect().size.y)
+	$Sprite2D/Name_Input/Name_Input_Right.scale=Vector2(-$Sprite2D/Name_Input/Name_Input_Left.scale.x,$Sprite2D/Name_Input/Name_Input_Left.scale.y)
+	$Sprite2D/Name_Input/Name_Input_Right.position=Vector2(5.0+$Sprite2D/Name_Input/Name_Input_Left.position.x,$Sprite2D/Name_Input/Name_Input_Left.position.y)
 
 
 func _on_name_input_text_changed(new_text: String) -> void:
@@ -52,3 +54,7 @@ func _on_focus_name_input_pressed() -> void:
 
 func _on_name_input_left_pressed() -> void:
 	$Sprite2D/Name_Input.caret_column=max($Sprite2D/Name_Input.caret_column-1,0)
+
+
+func _on_name_input_right_pressed() -> void:
+	$Sprite2D/Name_Input.caret_column=min($Sprite2D/Name_Input.caret_column+1,len($Sprite2D/Name_Input.text))

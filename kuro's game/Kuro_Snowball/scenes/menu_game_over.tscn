@@ -73,6 +73,12 @@ rotation = 3.14159
 texture_normal = SubResource("AtlasTexture_56u80")
 shape = SubResource("RectangleShape2D_vbgnx")
 
+[node name="Name_Input_Right" type="TouchScreenButton" parent="Sprite2D/Name_Input"]
+rotation = 3.14159
+texture_normal = SubResource("AtlasTexture_56u80")
+shape = SubResource("RectangleShape2D_vbgnx")
+
 [connection signal="text_changed" from="Sprite2D/Name_Input" to="." method="_on_name_input_text_changed"]
 [connection signal="pressed" from="Sprite2D/Name_Input/focus_name_input" to="." method="_on_focus_name_input_pressed"]
 [connection signal="pressed" from="Sprite2D/Name_Input/Name_Input_Left" to="." method="_on_name_input_left_pressed"]
+[connection signal="pressed" from="Sprite2D/Name_Input/Name_Input_Right" to="." method="_on_name_input_right_pressed"]
