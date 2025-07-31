@@ -15,6 +15,9 @@ func _ready():
 	$RigidBody2D/CollisionShape2D.scale=Vector2(player_scale,player_scale)
 	$RigidBody2D/AnimatedSprite2D.scale=Vector2(player_scale,player_scale)
 	$RigidBody2D/CollisionShape2D.position*=Vector2(player_scale,player_scale)
+	#$RigidBody2D.gravity_scale*=player_scale
+	#$RigidBody2D.mass*=player_scale
+	#$RigidBody2D.linear_damp*=player_scale
 
 func _process(_delta):
 	if $RigidBody2D.linear_velocity.length()<1 :

@@ -5,7 +5,10 @@ extends Node2D
 func _ready():
 	#srn=DisplayServer.window_get_size()
 	$Background.position=Vector2(Globals.srn.x/2,Globals.srn.y/2)
-	#$Background.scale=1.0*Globals.srn/$Background.texture.get_size()
+	#scale change of background relative to development size 640
+	var bg_scale=Globals.srn.y/640.0
+	$Background.scale=Vector2(bg_scale,bg_scale)
+	$Player_Name.label_settings.font_size=10*bg_scale
 	
 	var h=$Sprite2D.texture.get_height()
 	var w=$Sprite2D.texture.get_width()

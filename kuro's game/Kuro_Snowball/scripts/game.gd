@@ -3,6 +3,7 @@ extends Node2D
 #var srn #to hold screen size
 var force #affects acceleration
 var max_spd
+var jump_multiplier
 
 #Joystick position
 var srn_x
@@ -49,10 +50,8 @@ func _ready():
 	#force=20.0
 	#max_spd=300.0
 	force=9.0
-	max_spd=130.0
-	if $Player.player_scale>0:
-		force*=$Player.player_scale
-		max_spd*=$Player.player_scale
+	jump_multiplier=80.0
+	max_spd=150.0
 	$Player/RigidBody2D.contact_monitor=true
 	$Player/RigidBody2D.max_contacts_reported=20; 
 	
@@ -96,26 +95,30 @@ func _ready():
 	overflow_snowball_limit=10
 	
 	last_obstacle_y=0.0 #to hwlp limit obstacles placed
-	obstacle_interval=Globals.srn.y/3
+	obstacle_interval=Globals.srn.y/2
 	rnd=RandomNumberGenerator.new()
 	rnd.randomize()
 	
-	snowball_scale=-1
-	$BackGround.change_scale($Player.player_scale/2.5)
-	
+	scaling_init()
 
-func _process(_delta):
+func scaling_init():
+	if $Player.player_scale>0:
+		force+=($Player.player_scale*force*2/3)
+		max_spd+=($Player.player_scale*max_spd*2/3)
+		$Info.label_settings.font_size=6.0*$Player.player_scale
+		$BackGround.change_scale($Player.player_scale/2.5)
+	#Initialize separately based on image
+	snowball_scale=-1
+
+func _physics_process(_delta):
 	#keyboard handle
 	if Input.is_action_pressed("Move_Right"):
 		move_right()
 	if Input.is_action_pressed("Move_Left"):
 		move_left()
 
-	if Input.is_action_pressed("Jump"):
-		if $Player/RigidBody2D.get_colliding_bodies().size()>0 && $Player/RigidBody2D.get_colliding_bodies()[0].name!="LeftWall" && $Player/RigidBody2D.get_colliding_bodies()[0].name!="RightWall":
-			jump()
-		elif $Player/RigidBody2D.get_colliding_bodies().size()>1:
-			jump()
+	if Input.is_action_pressed("Jump") && can_jump():
+		jump()
 		
 	#Joystick handle
 	if dir>0:
@@ -168,8 +171,19 @@ func move_left():
 	$Player/RigidBody2D/AnimatedSprite2D.flip_h=true
 		
 func jump():
-	$Player/RigidBody2D.apply_impulse(Vector2(0.0, -force*60))
+	$Player/RigidBody2D.apply_impulse(Vector2(0.0, -force*jump_multiplier))
 	
+func can_jump():
+	var num_contacts=0
+	for cb in $Player/RigidBody2D.get_colliding_bodies():
+		if cb.name=="LeftWall":
+			continue
+		elif cb.name=="RightWall":
+			continue
+		elif cb.global_position.y > $Player/RigidBody2D.global_position.y:
+			num_contacts+=1
+	return num_contacts>0
+
 func cap_spd():
 #cap the speed
 	if $Player/RigidBody2D.linear_velocity.x>max_spd:

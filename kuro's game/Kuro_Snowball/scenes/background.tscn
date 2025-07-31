@@ -1,14 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjttqlbdjuskd"]
+[gd_scene load_steps=15 format=3 uid="uid://bjttqlbdjuskd"]
 
 [ext_resource type="Script" uid="uid://7658foi8glmg" path="res://scripts/background.gd" id="1_bkp1e"]
 [ext_resource type="Texture2D" uid="uid://do7j7ivv1wg3c" path="res://assets/sprites/stary_night_sky_4.jpg" id="2_cbsqf"]
 [ext_resource type="Texture2D" uid="uid://cvxigc3c4ywmi" path="res://assets/sprites/snow_background_Bottom.jpg" id="2_y0upk"]
 [ext_resource type="Texture2D" uid="uid://b6n0lw73fl6f" path="res://assets/sprites/mountain_night_v2.jpg" id="4_wisxt"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wax1t"]
+friction = 0.0
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5a4c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cbsqf"]
+friction = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bkp1e"]
 normal = Vector2(1, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wisxt"]
+friction = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y0upk"]
 normal = Vector2(-1, 0)
@@ -33,18 +42,21 @@ region = Rect2(12.7786, -5.92535, 2405.31, 1614.37)
 script = ExtResource("1_bkp1e")
 
 [node name="Ground" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_wax1t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_o5a4c")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_cbsqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("WorldBoundaryShape2D_bkp1e")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
 collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_wisxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_y0upk")

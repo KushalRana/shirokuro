@@ -20,6 +20,7 @@ region = Rect2(456, 208, 160, 173.265)
 radius = 70.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_iywne"]
+font_size = 6
 font_color = Color(1, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
